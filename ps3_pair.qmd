@@ -23,10 +23,13 @@ import pandas as pd
 import numpy as np
 
 np.random.seed(42)
-data = pd.DataFrame(np.random.rand(100), columns=['Random Numbers'])
+data = pd.DataFrame(np.random.rand(100), columns = ['Random Numbers'])
 
 def preview_data(df):
-    print(df.head())
+    print_head = print(df.head())
+    describe_results = df.describe()
+    final_list = [print_head, describe_results]
+    return final_list
 
 preview_data(data)
 ```
