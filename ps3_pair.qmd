@@ -21,6 +21,7 @@ include-before-body:
 ```{python}
 import pandas as pd
 import numpy as np
+import altair as alt
 
 np.random.seed(42)
 data = pd.DataFrame(np.random.rand(100), columns = ['Random Numbers'])
@@ -28,8 +29,14 @@ data = pd.DataFrame(np.random.rand(100), columns = ['Random Numbers'])
 def preview_data(df):
     print_head = print(df.head())
     describe_results = df.describe()
-    final_list = [print_head, describe_results]
+    plot_alt = alt.Chart(df).mark_bar().encode(
+      alt.X('Random Numbers:Q'),
+      alt.Y('count()')
+    )
+    final_list = [print_head, describe_results, plot_alt.display()]
     return final_list
 
 preview_data(data)
 ```
+
+
